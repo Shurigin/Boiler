@@ -9,6 +9,7 @@ void StartFun()
   if (curTimeStartFun < 6)
   {
   ShimFan(pinFan, time1Fan, level1Fan, false);//первый градиент 2 с плюс плато до 5 с
+  ShimGlow(pinGlow, ust1_levelGlow);
   }
   else if (curTimeStartFun == 6)
   {
@@ -25,6 +26,7 @@ void StartFun()
   else if (curTimeStartFun > 50 && curTimeStartFun < 68)
   {
     ShimFan(pinFan, time3Fan, level3Fan, false);
+    ShimGlow(pinGlow, ust2_levelGlow);
   }
   else if (curTimeStartFun > 68 && curTimeStartFun < 85)
   {

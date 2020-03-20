@@ -21,8 +21,8 @@ int ledSte = 5;
 byte pinGlow = 7;
 byte levelGlow;
 byte modeGlow;
-byte ust1_levelGlow = 255;
-byte ust2_levelGlow = 180;
+byte ust1_levelGlow = 170; //8 вольт
+byte ust2_levelGlow = 180; //7,8 вольт
 //=========shimGlow=============
 
 //=========ShimFan==============
@@ -126,7 +126,7 @@ void loop() {
      
       //DosPump(pinPump, u_time1Pump, freqPump, u_scalePump, pumpOff);
       //ShimFan(pinFan, time1Fan, level1Fan);
-      ShimGlow(pinGlow, ust1_levelGlow);
+      //ShimGlow(pinGlow, ust1_levelGlow);
     }
   }
   if (!start)
