@@ -21,6 +21,7 @@ int ledSte = 5;
 byte pinGlow = 7;
 byte levelGlow;
 byte modeGlow;
+byte ust0_levelGlow = 0; // 0 вольт
 byte ust1_levelGlow = 170; //8 вольт
 byte ust2_levelGlow = 180; //7,8 вольт
 //=========shimGlow=============

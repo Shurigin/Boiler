@@ -31,6 +31,7 @@ void StartFun()
   else if (curTimeStartFun > 68 && curTimeStartFun < 85)
   {
     ShimFan(pinFan, time4Fan, level4Fan, false);
+    ShimGlow(pinGlow, ust0_levelGlow);
   }
   else if (curTimeStartFun > 85 && curTimeStartFun < 105)
   {
