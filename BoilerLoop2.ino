@@ -23,7 +23,7 @@ byte levelGlow;
 byte modeGlow;
 byte ust0_levelGlow = 0; // 0 вольт
 byte ust1_levelGlow = 170; //8 вольт
-byte ust2_levelGlow = 180; //7,8 вольт
+byte ust2_levelGlow = 166; //7,8 вольт
 //=========shimGlow=============
 
 //=========ShimFan==============
@@ -55,6 +55,20 @@ unsigned long curTimeStartFun; //Текущее время функции StartF
 
 //=========DosPump===========
 byte pinPump = 9;
+unsigned long timerPump;
+byte stepPump1 = 500; //Шаг мигания соответствует 1 Гц
+byte stepPump2 = 250; //Шаг мигания соответствует 2 Гц
+byte stepPump3 = 125; //Шаг мигания соответствует 3 Гц
+byte stepPump4 = 62; //Шаг мигания соответствует 4 Гц
+byte stepPump5 = 31; //Шаг мигания соответствует 5 Гц
+bool flagPump; //промежуточная переменная для таймера помпы
+bool pumpOff = true; //Приведение состояние пина в ноль
+bool pumpOn;//Рабочее состояние пина
+//=========DosPump===========
+
+
+//=========DosPumpLast===========
+/*byte pinPump = 9;
 int pinLevelPump = 0;//Глобальная переменная текущего временнОго интервала моргания пина помпы
 int stapPump; //Глобальная переменная шага инкриментации/декриментации
 float freqPumpCur; 
@@ -68,7 +82,8 @@ bool inckPump;
 bool deckPump;
 bool pumpOn = true;
 bool pumpOff = false;
-//=========DosPump===========
+*/
+//=========DosPumpLast===========
 
 void setup() {
   Serial.begin(9600);
@@ -87,7 +102,8 @@ void loop() {
   Serial.println("$");
   Serial.println(pinLevelFan);
   Serial.println(" ");
-  Serial.println(start * 100);
+  Serial.println(levelGlow);
+  //Serial.println(start * 100);
   Serial.println(" ");
   Serial.println(curTimeStartFun);
   Serial.println(";");
@@ -112,7 +128,7 @@ void loop() {
     if (hysteresisTempOff) //Превышение верхнего порога температуры
     {//#Прописать функцию гашения котла
      
-      DosPump(pinPump, u_time1Pump, freqPump, u_scalePump, pumpOn);
+      //DosPump(pinPump, u_time1Pump, freqPump, u_scalePump, pumpOn);
       ShimFan(pinFan, time1Fan, 0, true);
       ShimGlow(pinGlow, 0);
     }
@@ -121,6 +137,7 @@ void loop() {
       //#запустить таймер
       //#if(время таймера не истекло(125с)){
       StartFun(); //#Запустить функцию запуска}
+      
      
       //#if(время таймера больше 125с){
       //#запустить функцию}
@@ -133,9 +150,10 @@ void loop() {
   if (!start)
   { //#Прописать функцию гашения котла
    
-    DosPump(pinPump, u_time1Pump, 0, u_scalePump, pumpOff);
-    ShimFan(pinFan, 1, 0, true);
+    DosPump(pinPump, stepPump1,  pumpOff);
+    //написать таймер в 1 сек в котором функция будет сбрасываться кратковременно
+    ShimFan(pinFan, 0, 0, true);
     ShimGlow(pinGlow, 0);
-    curTimeStartFun = 0; //сброс текущего времени функции StartFun
+    curTimeStartFun = 0; //сброс текущего времени функции StartFun    
   }  
 }

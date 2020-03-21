@@ -21,21 +21,23 @@ void StartFun()
   }
   else if (curTimeStartFun > 45 && curTimeStartFun < 50)
   {
-    //запускаем помпу на частоте 2 ГЦ
+    DosPump(pinPump, stepPump2, pumpOn);//запускаем помпу на частоте 2 ГЦ
   }
   else if (curTimeStartFun > 50 && curTimeStartFun < 68)
   {
     ShimFan(pinFan, time3Fan, level3Fan, false);
-    ShimGlow(pinGlow, ust2_levelGlow);
+    
   }
   else if (curTimeStartFun > 68 && curTimeStartFun < 85)
   {
     ShimFan(pinFan, time4Fan, level4Fan, false);
-    ShimGlow(pinGlow, ust0_levelGlow);
+    ShimGlow(pinGlow, ust2_levelGlow);
+    
   }
   else if (curTimeStartFun > 85 && curTimeStartFun < 105)
   {
     ShimFan(pinFan, time5Fan, level5Fan, false);
+    ShimGlow(pinGlow, ust0_levelGlow);
   }
   else if (curTimeStartFun > 105 && curTimeStartFun < 130)
   {
