@@ -128,7 +128,7 @@ void loop() {
     if (hysteresisTempOff) //Превышение верхнего порога температуры
     {//#Прописать функцию гашения котла
      
-      //DosPump(pinPump, u_time1Pump, freqPump, u_scalePump, pumpOn);
+      //Дописать выключение (параметры) DosPump(pinPump, u_time1Pump, freqPump, u_scalePump, pumpOn);
       ShimFan(pinFan, time1Fan, 0, true);
       ShimGlow(pinGlow, 0);
     }
